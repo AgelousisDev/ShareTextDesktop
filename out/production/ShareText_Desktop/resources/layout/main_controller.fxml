@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="720.0" prefWidth="1280.0" styleClass="secondWhiteBackground" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shareText.main.MainController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="593.0" prefHeight="720.0" prefWidth="687.0" spacing="8.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Label prefHeight="40.0" prefWidth="687.0" style="-fx-background-color: #f5f2f1;" text="Income Text">
+               <font>
+                  <Font name="Ubuntu Mono Bold" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="8.0" right="8.0" />
+               </padding>
+            </Label>
+            <JFXListView fx:id="incomeJfxListView" prefHeight="498.0" prefWidth="687.0" />
+            <Label prefHeight="40.0" prefWidth="687.0" style="-fx-background-color: #f5f2f1;" text="Outcome Text">
+               <font>
+                  <Font name="Ubuntu Mono Bold" size="16.0" />
+               </font>
+               <padding>
+                  <Insets left="8.0" />
+               </padding>
+            </Label>
+            <JFXTextArea fx:id="outcomeTextArea" focusColor="#e95420" labelFloat="true" prefHeight="44.0" prefWidth="687.0" styleClass="fieldHighLight" stylesheets="@../style/style.css">
+               <font>
+                  <Font name="Ubuntu Mono Bold" size="16.0" />
+               </font>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding></JFXTextArea>
+         </children>
+      </VBox>
+      <VBox prefHeight="720.0" prefWidth="400.0" styleClass="ubuntuBackground" stylesheets="@../style/style.css">
+         <children>
+            <AnchorPane prefHeight="606.0" prefWidth="400.0">
+               <children>
+                  <ImageView fitHeight="309.0" fitWidth="268.0" layoutX="51.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/share_text_icon.png" />
+                     </image>
+                  </ImageView>
+                  <VBox layoutY="295.0" prefHeight="294.0" prefWidth="401.0" spacing="8.0" styleClass="firstWhiteBackground" stylesheets="@../style/style.css">
+                     <children>
+                        <Label text="Settings" textFill="#868282">
+                           <VBox.margin>
+                              <Insets left="16.0" right="16.0" top="16.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Ubuntu Mono Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Line endX="384.0" stroke="#868282" strokeLineCap="ROUND">
+                           <VBox.margin>
+                              <Insets left="16.0" />
+                           </VBox.margin>
+                        </Line>
+                        <JFXToggleButton styleClass="jfx-button" stylesheets="@../style/style.css" text="Instantly Share" textFill="#868282" toggleColor="#9f6986" toggleLineColor="#c8a9ba">
+                           <font>
+                              <Font name="Ubuntu Mono Bold" size="14.0" />
+                           </font>
+                        </JFXToggleButton>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <VBox prefHeight="140.0" prefWidth="401.0" spacing="8.0" styleClass="firstWhiteBackground" stylesheets="@../style/style.css">
+               <children>
+                  <Label fx:id="developerContactLabel" text="Contact to ShareText Developer" textFill="#868282">
+                     <font>
+                        <Font name="Ubuntu Mono Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="16.0" right="16.0" top="8.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Line endX="384.0" stroke="#868282" strokeLineCap="ROUND">
+                     <VBox.margin>
+                        <Insets left="16.0" />
+                     </VBox.margin>
+                  </Line>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox fx:id="facebookButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/ic_facebook.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Facebook" textFill="#868282">
+                                 <font>
+                                    <Font name="Ubuntu Mono Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="instagramButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/ic_instagram.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Instagram" textFill="#868282">
+                                 <font>
+                                    <Font name="Ubuntu Mono Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="linkedinButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/ic_linkedin.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Linkedin" textFill="#868282">
+                                 <font>
+                                    <Font name="Ubuntu Mono Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="emailButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/ic_email.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Email" textFill="#868282">
+                                 <font>
+                                    <Font name="Ubuntu Mono Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="8.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

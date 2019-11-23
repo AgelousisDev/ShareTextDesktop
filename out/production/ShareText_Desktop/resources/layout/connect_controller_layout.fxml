@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="460.0" prefWidth="350.0" styleClass="secondWhiteBackground" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shareText.connect.ConnectController">
+   <children>
+      <StackPane alignment="TOP_CENTER" prefHeight="150.0" prefWidth="350.0" styleClass="ubuntuBackground" stylesheets="@../style/style.css">
+         <children>
+            <ImageView fitHeight="79.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/share_text_header_icon.png" />
+               </image>
+               <StackPane.margin>
+                  <Insets top="16.0" />
+               </StackPane.margin>
+            </ImageView>
+         </children>
+      </StackPane>
+      <VBox alignment="TOP_CENTER" layoutX="40.0" layoutY="118.0" prefHeight="200.0" prefWidth="270.0" spacing="16.0" styleClass="cardView" stylesheets="@../style/style.css">
+         <children>
+            <Label fx:id="credentialsLabel" text="Credentials For Android App" textAlignment="CENTER" textFill="#868282">
+               <font>
+                  <Font name="Ubuntu Mono Bold" size="16.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="251.0">
+               <children>
+                  <Label fx:id="portLabel" text="Port: ">
+                     <font>
+                        <Font name="Ubuntu Mono" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="portField" editable="false" focusColor="#925375" prefHeight="26.0" prefWidth="202.0" styleClass="fieldHighLight" stylesheets="@../style/style.css" text="4444">
+                     <font>
+                        <Font name="Ubuntu Mono Bold" size="15.0" />
+                     </font>
+                  </JFXTextField>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="251.0">
+               <children>
+                  <Label fx:id="ipAddressLabel" text="IP Address: ">
+                     <font>
+                        <Font name="Ubuntu Mono" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="ipAddressField" editable="false" focusColor="#925375" prefHeight="26.0" prefWidth="156.0" styleClass="fieldHighLight" stylesheets="@../style/style.css" text="8.8.8.8">
+                     <font>
+                        <Font name="Ubuntu Mono Bold" size="15.0" />
+                     </font>
+                  </JFXTextField>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <JFXButton fx:id="searchButton" buttonType="RAISED" prefHeight="37.0" prefWidth="229.0" styleClass="roundedButton" stylesheets="@../style/style.css" text="Search for Android Device" textFill="WHITE">
+               <font>
+                  <Font name="Ubuntu Mono Bold" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+      </VBox>
+      <StackPane layoutX="122.0" layoutY="354.0" prefHeight="72.0" prefWidth="107.0">
+         <children>
+            <ProgressIndicator fx:id="progressBar" prefHeight="72.0" prefWidth="72.0" styleClass="progress-bar" stylesheets="@../style/style.css" visible="false" />
+            <Label fx:id="timerLabel" textFill="#868282">
+               <font>
+                  <Font name="Ubuntu Mono Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

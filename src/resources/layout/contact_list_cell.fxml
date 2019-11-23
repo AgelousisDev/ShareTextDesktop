@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="contactCellVBox" alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="contactCellImageView" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ic_facebook.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="contactCellLabel" text="Facebook" textFill="WHITE">
+         <font>
+            <Font name="Ubuntu Mono Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</VBox>
