@@ -6,5 +6,6 @@
   "port_label": "Port: ",
   "application_information": "⭐ Click the Search button\n⭐ Credentials for the Android App\n⭐ Start Sharing Text",
   "internet_connection_not_available_label": "Internet connection is not available",
-  "contact_developer_label": "Contact ShareText Developer"
+  "contact_developer_label": "Contact ShareText Developer",
+  "channel_name_label": "Channel Name: "
 }

@@ -27,7 +27,8 @@ object Constants {
         PORT_LABEL("port_label"),
         APPLICATION_INFORMATION("application_information"),
         INTERNET_CONNECTION_NOT_AVAILABLE_LABEL("internet_connection_not_available_label"),
-        CONTACT_DEVELOPER_LABEL("contact_developer_label")
+        CONTACT_DEVELOPER_LABEL("contact_developer_label"),
+        CHANNEL_NAME_LABEL("channel_name_label")
     }
 
 }

@@ -33,10 +33,7 @@ open class UIController: Initializable {
         val root: Parent = fxmlLoader.load()
         val scene = Scene(root)
         val stage = Stage()
-        if (isOnTop) {
-            stage.initModality(Modality.APPLICATION_MODAL)
-            stage.isAlwaysOnTop = true
-        }
+        stage.isAlwaysOnTop = isOnTop
         stage.isResizable = false
         stage.title = windowTitle
         stage.scene = scene

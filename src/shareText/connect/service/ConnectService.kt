@@ -9,9 +9,10 @@ import shareText.utilities.Constants
 import shareText.utilities.Timer
 import shareText.utilities.extensions.messageModel
 import java.io.DataInputStream
+import java.io.DataOutputStream
 import java.net.ServerSocket
 
-class ConnectService(private val port: Int, private val connectServiceBlock: ConnectServiceBlock): Service<MessageModel?>() {
+class ConnectService(private val port: Int, private val channelName: String, private val connectServiceBlock: ConnectServiceBlock): Service<MessageModel?>() {
 
     override fun createTask(): Task<MessageModel?> {
         return object : Task<MessageModel?>() {
@@ -20,11 +21,13 @@ class ConnectService(private val port: Int, private val connectServiceBlock: Con
                 MainApplication.serverSocket?.reuseAddress = true
                 MainApplication.serverSocket?.soTimeout = Timer.TIMER_SECONDS.toInt() * 1000
                 MainApplication.server = MainApplication.serverSocket?.accept()
-                val inputStream = DataInputStream(MainApplication.server?.getInputStream().takeIf { it != null }
-                        ?: return null)
-                inputStream.use {
-                    return it.readUTF().messageModel
-                }
+                //Write to Client
+                val outToClient = MainApplication.server?.getOutputStream()
+                val out = DataOutputStream(outToClient)
+                out.writeUTF(channelName)
+                //Get from Client
+                val inputStream = DataInputStream(MainApplication.server?.getInputStream().takeIf { it != null } ?: return null)
+                return inputStream.readUTF().messageModel
             }
 
             override fun succeeded() {

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -24,7 +22,7 @@
             </ImageView>
          </children>
       </StackPane>
-      <VBox alignment="TOP_CENTER" layoutX="40.0" layoutY="118.0" prefHeight="200.0" prefWidth="270.0" spacing="16.0" styleClass="cardView" stylesheets="@../style/style.css">
+      <VBox alignment="TOP_CENTER" layoutX="40.0" layoutY="118.0" prefHeight="242.0" prefWidth="270.0" spacing="16.0" styleClass="cardView" stylesheets="@../style/style.css">
          <children>
             <Label fx:id="credentialsLabel" text="Credentials For Android App" textAlignment="CENTER" textFill="#868282">
                <font>
@@ -33,12 +31,12 @@
             </Label>
             <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="251.0">
                <children>
-                  <Label fx:id="portLabel" text="Port: ">
+                  <Label fx:id="channelNameLabel" text="Channel Name: ">
                      <font>
                         <Font name="Ubuntu Mono" size="14.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="portField" editable="false" focusColor="#925375" prefHeight="26.0" prefWidth="202.0" styleClass="fieldHighLight" stylesheets="@../style/style.css" text="4444">
+                  <JFXTextField fx:id="channelNameField" focusColor="#925375" prefHeight="26.0" prefWidth="156.0" styleClass="fieldHighLight" stylesheets="@../style/style.css">
                      <font>
                         <Font name="Ubuntu Mono Bold" size="15.0" />
                      </font>
@@ -65,17 +63,36 @@
                   <Insets />
                </opaqueInsets>
             </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="251.0">
+               <children>
+                  <Label fx:id="portLabel" text="Port: ">
+                     <font>
+                        <Font name="Ubuntu Mono" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="portField" editable="false" focusColor="#925375" prefHeight="26.0" prefWidth="202.0" styleClass="fieldHighLight" stylesheets="@../style/style.css" text="4444">
+                     <font>
+                        <Font name="Ubuntu Mono Bold" size="15.0" />
+                     </font>
+                  </JFXTextField>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
             <JFXButton fx:id="searchButton" buttonType="RAISED" prefHeight="37.0" prefWidth="229.0" styleClass="roundedButton" stylesheets="@../style/style.css" text="Search for Android Device" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Mono Bold" size="14.0" />
                </font>
+               <VBox.margin>
+               </VBox.margin>
             </JFXButton>
          </children>
          <padding>
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </padding>
       </VBox>
-      <StackPane layoutX="122.0" layoutY="354.0" prefHeight="72.0" prefWidth="107.0">
+      <StackPane layoutX="122.0" layoutY="374.0" prefHeight="72.0" prefWidth="107.0">
          <children>
             <ProgressIndicator fx:id="progressBar" prefHeight="72.0" prefWidth="72.0" styleClass="progress-bar" stylesheets="@../style/style.css" visible="false" />
             <Label fx:id="timerLabel" textFill="#868282">
