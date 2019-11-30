@@ -7,5 +7,8 @@
   "application_information": "⭐ Click the Search button\n⭐ Credentials for the Android App\n⭐ Start Sharing Text",
   "internet_connection_not_available_label": "Internet connection is not available",
   "contact_developer_label": "Contact ShareText Developer",
-  "channel_name_label": "Channel Name: "
+  "channel_name_label": "Channel Name: ",
+  "reconnect_android_device_label": "Re-Connect Android Device",
+  "connected_devices_label": "Connected Devices",
+  "enter_message_here_label": "Enter text here..."
 }

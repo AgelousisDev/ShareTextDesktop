@@ -12,71 +12,87 @@
 
 <AnchorPane id="AnchorPane" fx:id="root" prefHeight="720.0" prefWidth="1280.0" styleClass="secondWhiteBackground" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shareText.main.MainController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="593.0" prefHeight="720.0" prefWidth="687.0" spacing="8.0" style="-fx-background-color: #FFFFFF;">
+      <VBox alignment="TOP_CENTER" layoutX="593.0" prefHeight="720.0" prefWidth="687.0" styleClass="secondWhiteBackground" stylesheets="@../style/style.css">
          <children>
-            <Label prefHeight="40.0" prefWidth="687.0" style="-fx-background-color: #f5f2f1;" text="Income Text">
-               <font>
-                  <Font name="Ubuntu Mono Bold" size="16.0" />
-               </font>
+            <StackPane prefHeight="651.0" prefWidth="671.0" styleClass="messageListViewBackground" stylesheets="@../style/style.css">
                <VBox.margin>
-                  <Insets />
+                  <Insets right="8.0" top="16.0" />
                </VBox.margin>
-               <padding>
-                  <Insets left="8.0" right="8.0" />
-               </padding>
-            </Label>
-            <JFXListView fx:id="incomeJfxListView" prefHeight="498.0" prefWidth="687.0" />
-            <Label prefHeight="40.0" prefWidth="687.0" style="-fx-background-color: #f5f2f1;" text="Outcome Text">
-               <font>
-                  <Font name="Ubuntu Mono Bold" size="16.0" />
-               </font>
-               <padding>
-                  <Insets left="8.0" />
-               </padding>
-            </Label>
-            <JFXTextArea fx:id="outcomeTextArea" focusColor="#e95420" labelFloat="true" prefHeight="44.0" prefWidth="687.0" styleClass="fieldHighLight" stylesheets="@../style/style.css">
-               <font>
-                  <Font name="Ubuntu Mono Bold" size="16.0" />
-               </font>
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding></JFXTextArea>
+               <children>
+                  <ListView fx:id="shareTextListView" prefHeight="200.0" prefWidth="200.0" styleClass="share-text-list-cell" stylesheets="@../style/style.css">
+                     <StackPane.margin>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </StackPane.margin>
+                     <opaqueInsets>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </opaqueInsets>
+                  </ListView>
+               </children>
+            </StackPane>
+            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="687.0" spacing="16.0">
+               <children>
+                  <TextField fx:id="messageTextField" prefHeight="63.0" prefWidth="626.0" promptText="Enter text here..." styleClass="messageField" stylesheets="@../style/style.css">
+                     <font>
+                        <Font name="Ubuntu Mono Bold" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                  </TextField>
+                  <StackPane fx:id="sendMessageButton" prefHeight="52.0" prefWidth="65.0" styleClass="roundedButton" stylesheets="@../style/style.css">
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/ic_send.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="8.0" />
+                     </HBox.margin>
+                  </StackPane>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="16.0" top="16.0" />
+               </VBox.margin>
+            </HBox>
          </children>
       </VBox>
-      <VBox prefHeight="720.0" prefWidth="400.0" styleClass="ubuntuBackground" stylesheets="@../style/style.css">
+      <VBox prefHeight="720.0" prefWidth="400.0" style="-fx-background-radius: 0 80;" styleClass="ubuntuBackground" stylesheets="@../style/style.css">
          <children>
-            <AnchorPane prefHeight="606.0" prefWidth="400.0">
+            <VBox alignment="CENTER" prefHeight="276.0" prefWidth="401.0">
                <children>
-                  <ImageView fitHeight="309.0" fitWidth="268.0" layoutX="51.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="226.0" fitWidth="229.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/share_text_icon.png" />
                      </image>
                   </ImageView>
-                  <VBox layoutY="295.0" prefHeight="294.0" prefWidth="401.0" spacing="8.0" styleClass="firstWhiteBackground" stylesheets="@../style/style.css">
-                     <children>
-                        <Label text="Settings" textFill="#868282">
-                           <VBox.margin>
-                              <Insets left="16.0" right="16.0" top="16.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="Ubuntu Mono Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Line endX="384.0" stroke="#868282" strokeLineCap="ROUND">
-                           <VBox.margin>
-                              <Insets left="16.0" />
-                           </VBox.margin>
-                        </Line>
-                        <JFXToggleButton styleClass="jfx-button" stylesheets="@../style/style.css" text="Instantly Share" textFill="#868282" toggleColor="#9f6986" toggleLineColor="#c8a9ba">
-                           <font>
-                              <Font name="Ubuntu Mono Bold" size="14.0" />
-                           </font>
-                        </JFXToggleButton>
-                     </children>
-                  </VBox>
+                  <JFXButton fx:id="reConnectAndroidButton" buttonType="RAISED" prefHeight="37.0" prefWidth="292.0" ripplerFill="#9f6986" styleClass="topRoundWhiteButton" stylesheets="@../style/style.css" text="Re-Connect Android Device" textFill="#9f6986">
+                     <font>
+                        <Font name="Ubuntu Mono Bold" size="14.0" />
+                     </font>
+                  </JFXButton>
                </children>
-            </AnchorPane>
-            <VBox prefHeight="140.0" prefWidth="401.0" spacing="8.0" styleClass="firstWhiteBackground" stylesheets="@../style/style.css">
+            </VBox>
+            <VBox prefHeight="308.0" prefWidth="401.0" spacing="8.0" styleClass="firstWhiteBackground" stylesheets="@../style/style.css">
+               <children>
+                  <Label fx:id="connectedDevicesLabel" text="Connected Devices" textFill="#868282">
+                     <VBox.margin>
+                        <Insets left="16.0" right="16.0" top="16.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Ubuntu Mono Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Line endX="384.0" stroke="#868282" strokeLineCap="ROUND">
+                     <VBox.margin>
+                        <Insets left="16.0" />
+                     </VBox.margin>
+                  </Line>
+                  <ListView fx:id="connectedDevicesListView" stylesheets="@../style/style.css" />
+               </children>
+            </VBox>
+            <VBox prefHeight="144.0" prefWidth="401.0" spacing="8.0" styleClass="firstWhiteBackground" stylesheets="@../style/style.css">
                <children>
                   <Label fx:id="developerContactLabel" text="Contact to ShareText Developer" textFill="#868282">
                      <font>

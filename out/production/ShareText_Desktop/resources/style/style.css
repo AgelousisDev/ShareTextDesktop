@@ -6,6 +6,13 @@
     -fx-highlight-fill: #9F6986;
     -fx-text-inner-color: #868282;
 }
+.messageField {
+    -fx-highlight-fill: #9F6986;
+    -fx-text-inner-color: #868282;
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 50;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 4, 0, 0, 0);
+}
 .secondWhiteBackground {
     -fx-background-color: #F5F5F5;
 }
@@ -21,10 +28,43 @@
     -fx-background-radius: 8;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 4, 0, 0, 0);
 }
+.messageListViewBackground {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 4, 0, 0, 0);
+}
 .roundedButton {
     -fx-background-color: #9F6986;
     -fx-background-radius: 40;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 4, 0, 0, 0);
+}
+.share-text-list-cell .list-cell:even {
+    display: inline-block;
+    -fx-min-width: 50px;
+    -fx-background-color: #9F6986;
+    -fx-background-radius: 40;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 4, 0, 0, 0);
+    -fx-text-fill: #FFFFFF;
+    -fx-text-align: center;
+    -fx-padding: 16;
+    -fx-background-insets: 8;
+}
+.share-text-list-cell .list-cell:odd {
+    display: inline-block;
+    -fx-min-width: 50px;
+    -fx-background-color: #9F6986;
+    -fx-background-radius: 40;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 4, 0, 0, 0);
+    -fx-text-fill: #FFFFFF;
+    -fx-text-align: center;
+    -fx-padding: 16;
+    -fx-background-insets: 8;
+}
+.share-text-list-cell .list-cell:empty {
+    visibility: hidden;
+}
+.topRoundWhiteButton {
+    -fx-background-color: #FFFFFF;
 }
 .jfx-button .jfx-rippler{
     -jfx-rippler-fill: #9F6986;
@@ -47,22 +87,18 @@
     -fx-background-insets: 0; -fx-padding: 0;
 }
 
-.list-view .label {
-    -fx-text-fill: white;
-    -fx-font-family: Ubuntu;
-}
-.list-cell {
-    -fx-border-radius: 10 10 10 10;
-    -fx-background-color: white;
-}
-
 .list-cell:filled:selected:focused, .list-cell:filled:selected {
-    -fx-background-color: linear-gradient(#328BDB 0%, #207BCF 25%, #1973C9 75%, #0A65BF 100%);
+    -fx-background-color: #9F6986;
     -fx-text-fill: white;
 }
 
 .list-cell:even { /* <=== changed to even */
     -fx-background-color: white;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #868282;
+    -fx-text-fill: white;
 }
 .progress-bar {
     -fx-accent: #9F6986;
