@@ -15,6 +15,7 @@ object Constants {
     const val MESSAGE_BODY = "body"
     const val infoMessageType = "text/info"
     const val textType = "text/plain"
+    const val CONNECTION_STATE = "connection"
     const val facebookLink = "https://www.facebook.com/vagelakis.agelousis"
     const val instagramLink = "https://www.instagram.com/vagelakis_agelousis"
     const val linkedInLink = "https://www.linkedin.com/in/vagelis-agelousis-7a8793124/"

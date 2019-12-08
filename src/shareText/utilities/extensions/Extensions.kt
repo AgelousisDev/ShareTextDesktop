@@ -8,6 +8,8 @@ import org.json.JSONObject
 import shareText.server_socket.models.MessageModel
 import shareText.utilities.Constants
 import java.io.BufferedReader
+import java.io.DataInputStream
+import java.io.DataOutputStream
 import java.io.InputStreamReader
 import java.lang.Exception
 import java.net.InetSocketAddress
@@ -41,11 +43,12 @@ val String.localIPAdress: String?
 val String?.messageModel: MessageModel?
     get() = this?.let {
         with(JSONObject(it)) {
-            MessageModel(type = this.getString(Constants.MESSAGE_TYPE), body = this.getString(Constants.MESSAGE_BODY), isInstantMessage = this.getBoolean(Constants.INSTANT_VALUE))
+            MessageModel(connectionState = this.getBoolean(Constants.CONNECTION_STATE), type = this.getString(Constants.MESSAGE_TYPE), body = this.getString(Constants.MESSAGE_BODY), isInstantMessage = this.getBoolean(Constants.INSTANT_VALUE))
         }
     }
 
-fun initJsonMessageObject(type: String, instantValue: Boolean, body: String) = with(JSONObject()) {
+fun initJsonMessageObject(connectionState: Boolean, type: String, instantValue: Boolean, body: String) = with(JSONObject()) {
+    this.put(Constants.CONNECTION_STATE, connectionState)
     this.put(Constants.MESSAGE_TYPE, type)
     this.put(Constants.INSTANT_VALUE, instantValue)
     this.put(Constants.MESSAGE_BODY, body)
@@ -82,3 +85,8 @@ fun browseUrlOnLinux(urlString: String) {
     if (Runtime.getRuntime().exec(arrayOf("which", "xdg-open")).inputStream.read() != -1)
         Runtime.getRuntime().exec(arrayOf("xdg-open", urlString))
 }
+
+val Socket.receivedMessageModel: MessageModel?
+    get() = try { this.getInputStream()?.let { DataInputStream(it).readUTF().messageModel } } catch(e: Exception) { null }
+
+fun Socket.sendMessageModel(messageModelString: String) = this.getOutputStream()?.let { DataOutputStream(it).writeUTF(messageModelString) }

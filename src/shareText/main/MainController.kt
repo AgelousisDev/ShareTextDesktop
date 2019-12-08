@@ -13,12 +13,14 @@ import javafx.scene.layout.StackPane
 import javafx.scene.layout.VBox
 import shareText.main.cells.DeviceCell
 import shareText.main.cells.MessageCell
+import shareText.main.view_models.ShareTextViewModel
+import shareText.server_socket.interfaces.IncomeMessage
 import shareText.server_socket.models.DeviceModel
 import shareText.server_socket.models.MessageModel
 import shareText.utilities.Constants
 import shareText.utilities.extensions.*
 
-class MainController: UIController() {
+class MainController: UIController(), IncomeMessage {
     @FXML private var developerContactLabel: Label? = null
     @FXML private var reConnectAndroidButton: JFXButton? = null
     @FXML private var connectedDevicesLabel: Label? = null
@@ -31,6 +33,16 @@ class MainController: UIController() {
     @FXML private var sendMessageButton: StackPane? = null
     @FXML private var shareTextListView: ListView<MessageModel>? = null
 
+    private var shareTextViewModel: ShareTextViewModel? = null
+
+    override fun onMessageReceived(message: MessageModel?) {
+        message.whenNull {
+            showConnectDialog()
+        }.otherwise {
+            shareTextListView?.items?.add(it)
+        }
+    }
+
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         showConnectDialog()
         configureLabels()
@@ -38,6 +50,8 @@ class MainController: UIController() {
         configureDeviceListView()
         configureContactLayout()
         configureShareTextListView()
+        configureMessageFieldLayout()
+        configureViewModel()
     }
 
     private fun showConnectDialog() {
@@ -57,6 +71,9 @@ class MainController: UIController() {
 
     private fun configureUI() {
         reConnectAndroidButton?.setOnMouseClicked { if (it.isPrimaryButton) showConnectDialog() }
+        primaryStage?.setOnHiding {
+            shareTextViewModel?.outcomeMessageModelString = initJsonMessageObject(connectionState = false, type = Constants.infoMessageType, instantValue = false, body = "")
+        }
     }
 
     private fun configureDeviceListView() {
@@ -76,7 +93,18 @@ class MainController: UIController() {
 
     private fun configureShareTextListView() {
         shareTextListView?.setCellFactory { MessageCell() }
-        shareTextListView?.items = FXCollections.observableArrayList(MessageModel(type = Constants.textType, body = "Hello, how are you?", isInstantMessage = false), MessageModel(type = Constants.textType, body = "I am fine you?", isInstantMessage = false), MessageModel(type = Constants.textType, body = "This is made with RecyclerView.ViewHolder", isInstantMessage = false), MessageModel(type = Constants.textType, body = "Did you integrate git?", isInstantMessage = false), MessageModel(type = Constants.textType, body = "What about clicking on the item?\nEh?", isInstantMessage = false), MessageModel(type = Constants.textType, body = "Maybe a dialog to get the details of it", isInstantMessage = false), MessageModel(type = Constants.textType, body = "Check the margins better", isInstantMessage = false), MessageModel(type = Constants.textType, body = "https://www.google.com", isInstantMessage = false))
+        //shareTextListView?.items = FXCollections.observableArrayList(MessageModel(type = Constants.textType, body = "Hello, how are you?", isInstantMessage = false), MessageModel(type = Constants.textType, body = "I am fine you?", isInstantMessage = false), MessageModel(type = Constants.textType, body = "This is made with RecyclerView.ViewHolder", isInstantMessage = false), MessageModel(type = Constants.textType, body = "Did you integrate git?", isInstantMessage = false), MessageModel(type = Constants.textType, body = "What about clicking on the item?\nEh?", isInstantMessage = false), MessageModel(type = Constants.textType, body = "Maybe a dialog to get the details of it", isInstantMessage = false), MessageModel(type = Constants.textType, body = "Check the margins better", isInstantMessage = false), MessageModel(type = Constants.textType, body = "https://www.google.com", isInstantMessage = false))
+    }
+
+    private fun configureMessageFieldLayout() {
+        sendMessageButton?.setOnMouseClicked {
+            if (it.isPrimaryButton)
+                messageTextField?.text?.let { text -> shareTextViewModel?.outcomeMessageModelString = initJsonMessageObject(connectionState = true, type = Constants.textType, instantValue = false, body = text) } }
+    }
+
+    private fun configureViewModel() {
+        shareTextViewModel = ShareTextViewModel(incomeMessage = this)
+        shareTextViewModel?.serviceIsStartingReceiving = true
     }
 
 }
