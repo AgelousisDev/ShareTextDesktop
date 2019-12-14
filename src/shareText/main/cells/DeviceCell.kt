@@ -10,12 +10,12 @@ class DeviceCell: ListCell<DeviceModel>() {
     override fun updateItem(item: DeviceModel?, empty: Boolean) {
         super.updateItem(item, empty)
         font = Font.font("Ubuntu Mono", FontWeight.BOLD, 14.0)
-        if (empty) {
+        if (empty || item == null) {
             text = null
             graphic = null
         }
         else {
-            text = item?.deviceName ?: ""
+            text = item.deviceName
         }
     }
 }

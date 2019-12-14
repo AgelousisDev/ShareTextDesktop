@@ -1,7 +1,6 @@
 package shareText.main
 
 import com.jfoenix.controls.*
-import javafx.collections.FXCollections
 import javafx.fxml.FXML
 import shareText.controller.UIController
 import java.net.URL
@@ -11,6 +10,7 @@ import javafx.scene.control.ListView
 import javafx.scene.control.TextField
 import javafx.scene.layout.StackPane
 import javafx.scene.layout.VBox
+import javafx.stage.Stage
 import shareText.main.cells.DeviceCell
 import shareText.main.cells.MessageCell
 import shareText.main.view_models.ShareTextViewModel
@@ -19,6 +19,7 @@ import shareText.server_socket.models.DeviceModel
 import shareText.server_socket.models.MessageModel
 import shareText.utilities.Constants
 import shareText.utilities.extensions.*
+import kotlin.system.exitProcess
 
 class MainController: UIController(), IncomeMessage {
     @FXML private var developerContactLabel: Label? = null
@@ -34,9 +35,25 @@ class MainController: UIController(), IncomeMessage {
     @FXML private var shareTextListView: ListView<MessageModel>? = null
 
     private var shareTextViewModel: ShareTextViewModel? = null
+    override var params: Any? = null
+        set(value) {
+            field = value
+            (value as? DeviceModel)?.apply {
+                connectedDevicesListView?.items?.add(this)
+            }
+        }
+    override var primaryStage: Stage? = null
+        set(value) {
+            field = value
+            value?.setOnCloseRequest {
+                shareTextViewModel?.outcomeMessageModelString = initJsonMessageObject(connectionState = false, type = Constants.infoMessageType, instantValue = false, body = "")
+                exitProcess(0)
+            }
+        }
 
     override fun onMessageReceived(message: MessageModel?) {
         message.whenNull {
+            clearAfterDisconnect()
             showConnectDialog()
         }.otherwise {
             shareTextListView?.items?.add(it)
@@ -44,7 +61,6 @@ class MainController: UIController(), IncomeMessage {
     }
 
     override fun initialize(location: URL?, resources: ResourceBundle?) {
-        showConnectDialog()
         configureLabels()
         configureUI()
         configureDeviceListView()
@@ -57,7 +73,8 @@ class MainController: UIController(), IncomeMessage {
     private fun showConnectDialog() {
         initController(fxmlName = "${Constants.LAYOUT_PATH}connect_controller_layout.fxml", windowTitle = Constants.Localizable.APP_NAME_KEY.value.localizable, isOnTop = true) {
             (it as? DeviceModel)?.apply {
-                connectedDevicesListView?.items = FXCollections.observableArrayList(this)
+                connectedDevicesListView?.items?.add(this)
+                configureViewModel()
             }
         }
     }
@@ -71,17 +88,10 @@ class MainController: UIController(), IncomeMessage {
 
     private fun configureUI() {
         reConnectAndroidButton?.setOnMouseClicked { if (it.isPrimaryButton) showConnectDialog() }
-        primaryStage?.setOnHiding {
-            shareTextViewModel?.outcomeMessageModelString = initJsonMessageObject(connectionState = false, type = Constants.infoMessageType, instantValue = false, body = "")
-        }
     }
 
     private fun configureDeviceListView() {
-        connectedDevicesListView?.setCellFactory { with(DeviceCell()) {
-            this.stylesheets.add(javaClass.getResource(Constants.styleClass).toURI().toString())
-            this.styleClass.add("list-cell")
-            this
-        } }
+        connectedDevicesListView?.setCellFactory { DeviceCell() }
     }
 
     private fun configureContactLayout() {
@@ -93,18 +103,25 @@ class MainController: UIController(), IncomeMessage {
 
     private fun configureShareTextListView() {
         shareTextListView?.setCellFactory { MessageCell() }
-        //shareTextListView?.items = FXCollections.observableArrayList(MessageModel(type = Constants.textType, body = "Hello, how are you?", isInstantMessage = false), MessageModel(type = Constants.textType, body = "I am fine you?", isInstantMessage = false), MessageModel(type = Constants.textType, body = "This is made with RecyclerView.ViewHolder", isInstantMessage = false), MessageModel(type = Constants.textType, body = "Did you integrate git?", isInstantMessage = false), MessageModel(type = Constants.textType, body = "What about clicking on the item?\nEh?", isInstantMessage = false), MessageModel(type = Constants.textType, body = "Maybe a dialog to get the details of it", isInstantMessage = false), MessageModel(type = Constants.textType, body = "Check the margins better", isInstantMessage = false), MessageModel(type = Constants.textType, body = "https://www.google.com", isInstantMessage = false))
     }
 
     private fun configureMessageFieldLayout() {
         sendMessageButton?.setOnMouseClicked {
-            if (it.isPrimaryButton)
-                messageTextField?.text?.let { text -> shareTextViewModel?.outcomeMessageModelString = initJsonMessageObject(connectionState = true, type = Constants.textType, instantValue = false, body = text) } }
+            if (it.isPrimaryButton) {
+                messageTextField?.text?.let { text -> shareTextViewModel?.outcomeMessageModelString = initJsonMessageObject(type = Constants.textType, instantValue = false, body = text) }
+                messageTextField?.clear()
+            }
+        }
     }
 
     private fun configureViewModel() {
         shareTextViewModel = ShareTextViewModel(incomeMessage = this)
         shareTextViewModel?.serviceIsStartingReceiving = true
+    }
+
+    private fun clearAfterDisconnect() {
+        shareTextListView?.items?.clear()
+        connectedDevicesListView?.items?.clear()
     }
 
 }

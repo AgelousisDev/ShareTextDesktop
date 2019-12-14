@@ -60,6 +60,14 @@
     -fx-padding: 16;
     -fx-background-insets: 8;
 }
+.share-text-list-cell .list-cell:empty:odd {
+    -fx-background-color: transparent;
+    visibility: hidden;
+}
+.share-text-list-cell .list-cell:empty:even {
+    -fx-background-color: transparent;
+    visibility: hidden;
+}
 .share-text-list-cell .list-cell:empty {
     visibility: hidden;
 }

@@ -14,20 +14,28 @@ import java.util.*
 
 open class UIController: Initializable {
 
-    var primaryStage: Stage? = null
+    open var primaryStage: Stage? = null
+    open var params: Any? = null
     var viewControllerOnTopHideBlock: ViewControllerOnTopHideBlock? = null
 
     override fun initialize(location: URL?, resources: ResourceBundle?) {}
 
-    fun setController(fxmlName: String) {
+    /**
+     * Main Controller
+     */
+    fun setController(fxmlName: String, params: Any? = null) {
         val fxmlLoader = FXMLLoader(javaClass.getResource(fxmlName))
         val root: Parent = fxmlLoader.load()
         val scene = Scene(root)
         primaryStage?.scene = scene
         val controller = fxmlLoader.getController<UIController>()
+        controller.params = params
         controller.primaryStage = primaryStage
     }
 
+    /**
+     * Secondary Controller
+     */
     fun initController(fxmlName: String, windowTitle: String, isOnTop: Boolean = false, viewControllerOnTopHideBlock: ViewControllerOnTopHideBlock? = null) {
         val fxmlLoader = FXMLLoader(javaClass.getResource(fxmlName))
         val root: Parent = fxmlLoader.load()
@@ -40,9 +48,9 @@ open class UIController: Initializable {
         stage.initModality(Modality.WINDOW_MODAL)
         stage.initStyle(StageStyle.DECORATED)
         stage.icons.add(Image(javaClass.getResource("/resources/images/share_text_icon.png").toExternalForm()))
+        stage.show()
         val controller = fxmlLoader.getController<UIController>()
         controller.primaryStage = stage
         controller.viewControllerOnTopHideBlock = viewControllerOnTopHideBlock
-        stage.showAndWait()
     }
 }

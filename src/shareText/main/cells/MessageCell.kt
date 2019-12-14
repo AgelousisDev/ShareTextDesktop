@@ -7,15 +7,16 @@ import shareText.server_socket.models.MessageModel
 import shareText.utilities.Constants
 
 class MessageCell: ListCell<MessageModel>() {
+
     override fun updateItem(item: MessageModel?, empty: Boolean) {
         super.updateItem(item, empty)
         font = Font.font("Ubuntu Mono", FontWeight.BOLD, 14.0)
-        if (isEmpty) {
+        if (empty || item == null) {
             text = null
             graphic = null
         }
         else {
-            text = item?.body
+            text = item.body
         }
     }
 }

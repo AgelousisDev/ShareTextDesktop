@@ -4,6 +4,7 @@ import javafx.scene.control.Label
 import javafx.scene.input.MouseButton
 import javafx.scene.input.MouseEvent
 import javafx.scene.paint.Paint
+import javafx.stage.Stage
 import org.json.JSONObject
 import shareText.server_socket.models.MessageModel
 import shareText.utilities.Constants
@@ -15,6 +16,7 @@ import java.lang.Exception
 import java.net.InetSocketAddress
 import java.net.Socket
 import java.util.*
+import kotlin.system.exitProcess
 
 val String.localizable: String
     get() = BufferedReader(InputStreamReader(javaClass.getResourceAsStream("/resources/strings/strings_${System.getProperty("user.language")}.json"))).use { JSONObject(it.readText()).getString(this) }
@@ -47,7 +49,7 @@ val String?.messageModel: MessageModel?
         }
     }
 
-fun initJsonMessageObject(connectionState: Boolean, type: String, instantValue: Boolean, body: String) = with(JSONObject()) {
+fun initJsonMessageObject(connectionState: Boolean = true, type: String, instantValue: Boolean, body: String) = with(JSONObject()) {
     this.put(Constants.CONNECTION_STATE, connectionState)
     this.put(Constants.MESSAGE_TYPE, type)
     this.put(Constants.INSTANT_VALUE, instantValue)
@@ -90,3 +92,7 @@ val Socket.receivedMessageModel: MessageModel?
     get() = try { this.getInputStream()?.let { DataInputStream(it).readUTF().messageModel } } catch(e: Exception) { null }
 
 fun Socket.sendMessageModel(messageModelString: String) = this.getOutputStream()?.let { DataOutputStream(it).writeUTF(messageModelString) }
+
+fun Stage.exitOnClose() {
+    this.setOnCloseRequest { exitProcess(0) }
+}

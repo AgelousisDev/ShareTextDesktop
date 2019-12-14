@@ -12,6 +12,7 @@ import shareText.utilities.extensions.localizable
 import java.lang.Exception
 import javafx.util.Duration.seconds
 import javafx.animation.ScaleTransition
+import shareText.utilities.extensions.exitOnClose
 import java.net.ServerSocket
 import java.net.Socket
 
@@ -42,5 +43,6 @@ class MainApplication: Application() {
         primaryStage.show()
         val controller = fxmlLoader.getController<UIController>()
         controller.primaryStage = primaryStage
+        primaryStage.exitOnClose()
     }
 }

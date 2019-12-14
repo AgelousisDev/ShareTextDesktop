@@ -23,7 +23,7 @@ class ConnectService(private val port: Int, private val channelName: String, pri
                 MainApplication.serverSocket?.soTimeout = Timer.TIMER_SECONDS.toInt() * 1000
                 MainApplication.server = MainApplication.serverSocket?.accept()
                 //Write to Client
-                MainApplication.server?.sendMessageModel(messageModelString = initJsonMessageObject(connectionState = true, type = Constants.infoMessageType, instantValue = false, body = channelName))
+                MainApplication.server?.sendMessageModel(messageModelString = initJsonMessageObject(type = Constants.infoMessageType, instantValue = false, body = channelName))
                 //Get from Client
                 return MainApplication.server?.receivedMessageModel
             }

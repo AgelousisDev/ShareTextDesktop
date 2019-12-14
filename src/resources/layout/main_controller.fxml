@@ -89,7 +89,7 @@
                         <Insets left="16.0" />
                      </VBox.margin>
                   </Line>
-                  <ListView fx:id="connectedDevicesListView" stylesheets="@../style/style.css" />
+                  <ListView fx:id="connectedDevicesListView" styleClass="share-text-list-cell" stylesheets="@../style/style.css" />
                </children>
             </VBox>
             <VBox prefHeight="144.0" prefWidth="401.0" spacing="8.0" styleClass="firstWhiteBackground" stylesheets="@../style/style.css">
