@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shareText.dialogs.BasicDialogController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="400.0" spacing="16.0" styleClass="ubuntuBackground" stylesheets="@../style/style.css">
+         <children>
+            <ImageView fx:id="basicDialogHeaderImageView" fitHeight="86.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ic_info.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="basicDialogHeaderLabel" text="Instructions" textFill="WHITE">
+               <font>
+                  <Font name="Ubuntu Mono Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="71.0" layoutY="200.0" prefHeight="301.0" prefWidth="400.0" spacing="16.0">
+         <padding>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+         </padding>
+         <children>
+            <WebView fx:id="basicDialogWebView" prefHeight="200.0" prefWidth="200.0" />
+            <Line endX="335.0" stroke="#868282" strokeLineCap="ROUND">
+               <VBox.margin>
+                  <Insets left="16.0" />
+               </VBox.margin>
+            </Line>
+            <JFXButton fx:id="basicDialogMainButton" buttonType="RAISED" prefHeight="47.0" prefWidth="90.0" styleClass="roundedButton" stylesheets="@../style/style.css" text="OK" textFill="WHITE">
+               <font>
+                  <Font name="Ubuntu Mono Bold" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
+</VBox>

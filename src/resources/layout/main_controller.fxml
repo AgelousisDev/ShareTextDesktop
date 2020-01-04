@@ -27,6 +27,20 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </opaqueInsets>
                   </ListView>
+                  <VBox fx:id="shareTextEmptyVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="16.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/share_text_header_icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Start the sharing between Android &amp; Linux" textFill="#868282">
+                           <font>
+                              <Font name="Ubuntu Mono Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
             </StackPane>
             <HBox alignment="CENTER" prefHeight="80.0" prefWidth="687.0" spacing="16.0">

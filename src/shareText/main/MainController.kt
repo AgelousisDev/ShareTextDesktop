@@ -8,11 +8,14 @@ import java.util.*
 import javafx.scene.control.Label
 import javafx.scene.control.ListView
 import javafx.scene.control.TextField
+import javafx.scene.input.KeyCode
 import javafx.scene.layout.StackPane
 import javafx.scene.layout.VBox
 import javafx.stage.Stage
+import shareText.application.MainApplication
 import shareText.main.cells.DeviceCell
 import shareText.main.cells.MessageCell
+import shareText.main.enumerations.ShareTextViewType
 import shareText.main.view_models.ShareTextViewModel
 import shareText.server_socket.interfaces.IncomeMessage
 import shareText.server_socket.models.DeviceModel
@@ -33,6 +36,7 @@ class MainController: UIController(), IncomeMessage {
     @FXML private var messageTextField: TextField? = null
     @FXML private var sendMessageButton: StackPane? = null
     @FXML private var shareTextListView: ListView<MessageModel>? = null
+    @FXML private var shareTextEmptyVBox: VBox? = null
 
     private var shareTextViewModel: ShareTextViewModel? = null
     override var params: Any? = null
@@ -46,16 +50,25 @@ class MainController: UIController(), IncomeMessage {
         set(value) {
             field = value
             value?.setOnCloseRequest {
-                shareTextViewModel?.outcomeMessageModelString = initJsonMessageObject(connectionState = false, type = Constants.infoMessageType, instantValue = false, body = "")
-                exitProcess(0)
+                if (MainApplication.serverSocket != null && MainApplication.server != null) {
+                    shareTextViewModel?.outcomeMessageModelString = initJsonMessageObject(connectionState = false, type = Constants.infoMessageType, instantValue = false, body = "")
+                    exitProcess(0)
+                }
             }
+        }
+    private var shareTextViewType = ShareTextViewType.EMPTY_VIEW
+        set(value) {
+            field = value
+            shareTextEmptyVBox?.isVisible = value == ShareTextViewType.EMPTY_VIEW
         }
 
     override fun onMessageReceived(message: MessageModel?) {
         message.whenNull {
             clearAfterDisconnect()
+            shareTextViewType = ShareTextViewType.EMPTY_VIEW
             showConnectDialog()
         }.otherwise {
+            shareTextViewType = ShareTextViewType.MESSAGE_VIEW
             shareTextListView?.items?.add(it)
         }
     }
@@ -107,11 +120,17 @@ class MainController: UIController(), IncomeMessage {
 
     private fun configureMessageFieldLayout() {
         sendMessageButton?.setOnMouseClicked {
-            if (it.isPrimaryButton) {
-                messageTextField?.text?.let { text -> shareTextViewModel?.outcomeMessageModelString = initJsonMessageObject(type = Constants.textType, instantValue = false, body = text) }
-                messageTextField?.clear()
-            }
+            if (it.isPrimaryButton) sendMessage(body = messageTextField?.text?.takeIf { text -> text.isNotEmpty() } ?: return@setOnMouseClicked)
         }
+        messageTextField?.setOnKeyPressed {
+            if (it.code == KeyCode.ENTER) sendMessage(body = messageTextField?.text?.takeIf { text -> text.isNotEmpty() } ?: return@setOnKeyPressed)
+        }
+    }
+
+    private fun sendMessage(body: String) {
+        shareTextViewModel?.outcomeMessageModelString = initJsonMessageObject(type = Constants.textType, instantValue = false, body = body)
+        messageTextField?.clear()
+        shareTextListView?.requestFocus()
     }
 
     private fun configureViewModel() {

@@ -1,14 +1,16 @@
 {
   "app_name": "SHARE TEXT",
   "search_for_android_label": "Search for Android device",
-  "credentials_for_android_app_label": "Credentials For Android App",
-  "ip_address_label": "IP Address: ",
-  "port_label": "Port: ",
-  "application_information": "⭐ Click the Search button\n⭐ Credentials for the Android App\n⭐ Start Sharing Text",
+  "ip_address_and_port_number_label": "IP Address & Port Number",
+  "ip_address_label": "IP Address",
+  "port_label": "Port",
+  "application_information": "• Download the ShareText app from <br/>&#160;&#160;<a href=\"https://snapcraft.io/store\">Ubuntu Store</a><br/>• Open the app<br/>• Both devices must be connected to the <br/>&#160;&#160;same network<br/>• Click on the \"Search for Android <br/>&#160;&#160;device\"<br/>• Enter credentials in this form<br/>• Click \"Connect\"<br/>• Start sharing text instantly",
   "internet_connection_not_available_label": "Internet connection is not available",
   "contact_developer_label": "Contact ShareText Developer",
-  "channel_name_label": "Channel Name: ",
+  "channel_name_label": "Channel Name (E.g. TestingChannel)",
   "reconnect_android_device_label": "Re-Connect Android Device",
   "connected_devices_label": "Connected Devices",
-  "enter_message_here_label": "Enter text here..."
+  "enter_message_here_label": "Enter text here...",
+  "instructions_label": "Instructions",
+  "ok_label": "OK"
 }

@@ -36,7 +36,7 @@ open class UIController: Initializable {
     /**
      * Secondary Controller
      */
-    fun initController(fxmlName: String, windowTitle: String, isOnTop: Boolean = false, viewControllerOnTopHideBlock: ViewControllerOnTopHideBlock? = null) {
+    fun initController(fxmlName: String, windowTitle: String, isOnTop: Boolean = false, params: Any? = null, viewControllerOnTopHideBlock: ViewControllerOnTopHideBlock? = null) {
         val fxmlLoader = FXMLLoader(javaClass.getResource(fxmlName))
         val root: Parent = fxmlLoader.load()
         val scene = Scene(root)
@@ -52,5 +52,6 @@ open class UIController: Initializable {
         val controller = fxmlLoader.getController<UIController>()
         controller.primaryStage = stage
         controller.viewControllerOnTopHideBlock = viewControllerOnTopHideBlock
+        controller.params = params
     }
 }
