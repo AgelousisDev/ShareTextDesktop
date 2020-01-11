@@ -52,7 +52,7 @@ class ConnectController: UIController() {
     }
 
     private fun initServerSocket() {
-        ConnectService(port = portField?.text?.toInt() ?: 0, channelName = channelNameField?.text ?: "") {
+        ConnectService(port = portField?.text?.split(":")?.secondOrNull()?.trim()?.toInt() ?: 0, channelName = channelNameField?.text ?: "") {
             primaryStage?.hide()
             viewControllerOnTopHideBlock?.invoke(it)
         }.start()

@@ -96,3 +96,5 @@ fun Socket.sendMessageModel(messageModelString: String) = this.getOutputStream()
 fun Stage.exitOnClose() {
     this.setOnCloseRequest { exitProcess(0) }
 }
+
+fun <T> List<T>.secondOrNull(): T? = if (isEmpty()) null else this[1]
