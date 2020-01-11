@@ -98,3 +98,6 @@ fun Stage.exitOnClose() {
 }
 
 fun <T> List<T>.secondOrNull(): T? = if (isEmpty()) null else this[1]
+
+val String?.isLink: Boolean
+    get() = this?.startsWith("https://") == true || this?.startsWith("http://") == true

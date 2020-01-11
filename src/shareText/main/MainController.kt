@@ -116,6 +116,9 @@ class MainController: UIController(), IncomeMessage {
 
     private fun configureShareTextListView() {
         shareTextListView?.setCellFactory { MessageCell() }
+        shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {
+            shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }
+        } }
     }
 
     private fun configureMessageFieldLayout() {
