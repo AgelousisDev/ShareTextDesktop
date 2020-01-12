@@ -4,7 +4,6 @@ import javafx.scene.control.ListCell
 import javafx.scene.text.Font
 import javafx.scene.text.FontWeight
 import shareText.server_socket.models.MessageModel
-import shareText.utilities.Constants
 import shareText.utilities.extensions.isLink
 
 class MessageCell: ListCell<MessageModel>() {

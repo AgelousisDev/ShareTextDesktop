@@ -4,7 +4,7 @@
   "ip_address_and_port_number_label": "IP Address & Port Number",
   "ip_address_label": "IP Address",
   "port_label": "Port",
-  "application_information": "• Download the ShareText app from <br/>&#160;&#160;<a href=\"https://snapcraft.io/store\">Ubuntu Store</a><br/>• Open the app<br/>• Both devices must be connected to the <br/>&#160;&#160;same network<br/>• Click on the \"Search for Android <br/>&#160;&#160;device\"<br/>• Enter credentials in this form<br/>• Click \"Connect\"<br/>• Start sharing text instantly",
+  "application_information": "<html>\n<style>body {\n  -webkit-touch-callout: none;\n-webkit-user-select: none;\n-khtml-user-select: none;\n-moz-user-select: none;\n-ms-user-select: none;\nuser-select: none;\n}\n</style>\n<body bgColor=\"#F5F5F5\">\n<font face=\"Ubuntu Mono\"><b>• Download the ShareText App from <br/>&#160;&#160;the link below<br/>• Open the app<br/>• Both devices must be connected to the <br/>&#160;&#160;same network<br/>• Click on the \"Search for Android <br/>&#160;&#160;device\" on this App<br/>• Enter IPAddress & Port Number on the Android App<br/>• Click \"Connect\" on Android App<br/>• Start sharing text instantly</b></font><br>\n<center><a href='https://play.google.com/store/apps/details?id=com.agelousis.sharetext&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/ width=\"250\"></a></center>\n</body>\n</html>",
   "internet_connection_not_available_label": "Internet connection is not available",
   "contact_developer_label": "Contact ShareText Developer",
   "channel_name_label": "Channel Name (E.g. TestingChannel)",

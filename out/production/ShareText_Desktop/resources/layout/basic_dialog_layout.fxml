@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shareText.dialogs.BasicDialogController">
+<VBox prefHeight="615.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shareText.dialogs.BasicDialogController">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="400.0" spacing="16.0" styleClass="ubuntuBackground" stylesheets="@../style/style.css">
          <children>
@@ -26,12 +26,12 @@
             </Label>
          </children>
       </VBox>
-      <VBox alignment="CENTER" layoutX="71.0" layoutY="200.0" prefHeight="301.0" prefWidth="400.0" spacing="16.0">
+      <VBox alignment="CENTER" layoutX="71.0" layoutY="200.0" prefHeight="415.0" prefWidth="400.0" spacing="16.0">
          <padding>
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
          </padding>
          <children>
-            <WebView fx:id="basicDialogWebView" prefHeight="200.0" prefWidth="200.0" />
+            <WebView fx:id="basicDialogWebView" prefHeight="317.0" prefWidth="368.0" />
             <Line endX="335.0" stroke="#868282" strokeLineCap="ROUND">
                <VBox.margin>
                   <Insets left="16.0" />
