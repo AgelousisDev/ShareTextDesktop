@@ -8,8 +8,8 @@ typealias ConnectServiceBlock = (DeviceModel?) -> Unit
 typealias ViewControllerOnTopHideBlock = (Any?) -> Unit
 object Constants {
     const val LAYOUT_PATH = "/resources/layout/"
-    const val styleClass = "/resources/style/style.css"
-    const val IMAGES_PATH = "/resources/images/"
+    //const val styleClass = "/resources/style/style.css"
+    private const val IMAGES_PATH = "/resources/images/"
     const val PORT_LENGTH = 4
     const val MESSAGE_TYPE = "type"
     const val INSTANT_VALUE = "instant"
@@ -21,7 +21,11 @@ object Constants {
     const val instagramLink = "https://www.instagram.com/vagelakis_agelousis"
     const val linkedInLink = "https://www.linkedin.com/in/vagelis-agelousis-7a8793124/"
     const val emailLink = "mailto:vagelis_agelousis@outlook.com?subject=ShareText"
+    const val githubLink = "https://github.com/AgelousisDev/ShareTextDesktop"
     const val IC_INFO_IMAGE = "${IMAGES_PATH}ic_info.png"
+    const val CONNECT_CONTROLLER_LAYOUT = "${LAYOUT_PATH}connect_controller_layout.fxml"
+    const val BASIC_DIALOG_LAYOUT = "${LAYOUT_PATH}basic_dialog_layout.fxml"
+    const val CONTACT_VIEW_LAYOUT = "${LAYOUT_PATH}contact_view_layout.fxml"
 
     enum class Localizable(val value: String) {
         APP_NAME_KEY("app_name"),
@@ -37,7 +41,9 @@ object Constants {
         CONNECTED_DEVICES_LABEL("connected_devices_label"),
         ENTER_TEXT_HERE_LABEL("enter_message_here_label"),
         INSTRUCTIONS_LABEL("instructions_label"),
-        OK_LABEL("ok_label")
+        OK_LABEL("ok_label"),
+        SHARE_TEXT_PROJECT_LABEL("share_text_project_label"),
+        PROJECT_LABEL("project_label")
     }
 
 }

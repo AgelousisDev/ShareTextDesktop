@@ -25,18 +25,14 @@ import shareText.utilities.extensions.*
 import kotlin.system.exitProcess
 
 class MainController: UIController(), IncomeMessage {
-    @FXML private var developerContactLabel: Label? = null
     @FXML private var reConnectAndroidButton: JFXButton? = null
     @FXML private var connectedDevicesLabel: Label? = null
     @FXML private var connectedDevicesListView: ListView<DeviceModel>? = null
-    @FXML private var facebookButton: VBox? = null
-    @FXML private var instagramButton: VBox? = null
-    @FXML private var linkedinButton: VBox? = null
-    @FXML private var emailButton: VBox? = null
     @FXML private var messageTextField: TextField? = null
     @FXML private var sendMessageButton: StackPane? = null
     @FXML private var shareTextListView: ListView<MessageModel>? = null
     @FXML private var shareTextEmptyVBox: VBox? = null
+    @FXML private var contactUsButton: JFXButton? = null
 
     private var shareTextViewModel: ShareTextViewModel? = null
     override var params: Any? = null
@@ -84,7 +80,7 @@ class MainController: UIController(), IncomeMessage {
     }
 
     private fun showConnectDialog() {
-        initController(fxmlName = "${Constants.LAYOUT_PATH}connect_controller_layout.fxml", windowTitle = Constants.Localizable.APP_NAME_KEY.value.localizable, isOnTop = true) {
+        initController(fxmlName = Constants.CONNECT_CONTROLLER_LAYOUT, windowTitle = Constants.Localizable.APP_NAME_KEY.value.localizable, isOnTop = true) {
             (it as? DeviceModel)?.apply {
                 connectedDevicesListView?.items?.add(this)
                 configureViewModel()
@@ -95,7 +91,6 @@ class MainController: UIController(), IncomeMessage {
     private fun configureLabels() {
         reConnectAndroidButton?.text = Constants.Localizable.RECONNECT_ANDROID_DEVICE_LABEL.value.localizable
         connectedDevicesLabel?.text = Constants.Localizable.CONNECTED_DEVICES_LABEL.value.localizable
-        developerContactLabel?.text = Constants.Localizable.CONTACT_DEVELOPER_LABEL.value.localizable
         messageTextField?.promptText = Constants.Localizable.ENTER_TEXT_HERE_LABEL.value.localizable
     }
 
@@ -108,10 +103,7 @@ class MainController: UIController(), IncomeMessage {
     }
 
     private fun configureContactLayout() {
-        facebookButton?.setOnMouseClicked { if (it.isPrimaryButton) browseUrlOnLinux(urlString = Constants.facebookLink) }
-        instagramButton?.setOnMouseClicked { if (it.isPrimaryButton) browseUrlOnLinux(urlString = Constants.instagramLink) }
-        linkedinButton?.setOnMouseClicked { if (it.isPrimaryButton) browseUrlOnLinux(urlString = Constants.linkedInLink) }
-        emailButton?.setOnMouseClicked { if (it.isPrimaryButton) browseUrlOnLinux(urlString = Constants.emailLink) }
+        contactUsButton?.setOnMouseClicked { if (it.isPrimaryButton) initController(fxmlName = Constants.CONTACT_VIEW_LAYOUT, windowTitle = Constants.Localizable.SHARE_TEXT_PROJECT_LABEL.value.localizable, isOnTop = true) }
     }
 
     private fun configureShareTextListView() {

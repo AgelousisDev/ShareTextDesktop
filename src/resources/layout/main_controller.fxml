@@ -88,7 +88,7 @@
                   </JFXButton>
                </children>
             </VBox>
-            <VBox prefHeight="308.0" prefWidth="401.0" spacing="8.0" styleClass="firstWhiteBackground" stylesheets="@../style/style.css">
+            <VBox prefHeight="395.0" prefWidth="401.0" spacing="8.0" styleClass="firstWhiteBackground" stylesheets="@../style/style.css">
                <children>
                   <Label fx:id="connectedDevicesLabel" text="Connected Devices" textFill="#868282">
                      <VBox.margin>
@@ -106,84 +106,13 @@
                   <ListView fx:id="connectedDevicesListView" styleClass="share-text-list-cell" stylesheets="@../style/style.css" />
                </children>
             </VBox>
-            <VBox prefHeight="144.0" prefWidth="401.0" spacing="8.0" styleClass="firstWhiteBackground" stylesheets="@../style/style.css">
+            <VBox alignment="CENTER" prefHeight="48.0" prefWidth="401.0" styleClass="firstWhiteBackground" stylesheets="@../style/style.css">
                <children>
-                  <Label fx:id="developerContactLabel" text="Contact to ShareText Developer" textFill="#868282">
+                  <JFXButton fx:id="contactUsButton" buttonType="RAISED" contentDisplay="CENTER" prefHeight="50.0" prefWidth="401.0" ripplerFill="#9f6986" style="-fx-background-color: #9F6986; -fx-background-radius: 0;" text="Contact Us" textFill="WHITE">
                      <font>
-                        <Font name="Ubuntu Mono Bold" size="18.0" />
+                        <Font name="Ubuntu Mono Bold" size="14.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets left="16.0" right="16.0" top="8.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Line endX="384.0" stroke="#868282" strokeLineCap="ROUND">
-                     <VBox.margin>
-                        <Insets left="16.0" />
-                     </VBox.margin>
-                  </Line>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <VBox fx:id="facebookButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0">
-                           <children>
-                              <ImageView fitHeight="60.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/ic_facebook.png" />
-                                 </image>
-                              </ImageView>
-                              <Label text="Facebook" textFill="#868282">
-                                 <font>
-                                    <Font name="Ubuntu Mono Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox fx:id="instagramButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0">
-                           <children>
-                              <ImageView fitHeight="60.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/ic_instagram.png" />
-                                 </image>
-                              </ImageView>
-                              <Label text="Instagram" textFill="#868282">
-                                 <font>
-                                    <Font name="Ubuntu Mono Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox fx:id="linkedinButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0">
-                           <children>
-                              <ImageView fitHeight="60.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/ic_linkedin.png" />
-                                 </image>
-                              </ImageView>
-                              <Label text="Linkedin" textFill="#868282">
-                                 <font>
-                                    <Font name="Ubuntu Mono Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox fx:id="emailButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0">
-                           <children>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/ic_email.png" />
-                                 </image>
-                              </ImageView>
-                              <Label text="Email" textFill="#868282">
-                                 <font>
-                                    <Font name="Ubuntu Mono Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="8.0" />
-                     </VBox.margin>
-                  </HBox>
+                  </JFXButton>
                </children>
             </VBox>
          </children>

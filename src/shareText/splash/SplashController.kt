@@ -22,7 +22,7 @@ class SplashController: UIController() {
                             if (!it)
                                 primaryStage?.let { stage -> Toast.makeText(ownerStage = stage, toastMsg = Constants.Localizable.INTERNET_CONNECTION_NOT_AVAILABLE_LABEL.value.localizable, toastDelay = 2000, fadeInDelay = 250.0, fadeOutDelay = 250.0, textColor = Color.WHITE, typeface = "Ubuntu Mono", size = 18.0) }
                             else {
-                                initController(fxmlName = "${Constants.LAYOUT_PATH}connect_controller_layout.fxml", windowTitle = Constants.Localizable.APP_NAME_KEY.value.localizable, isOnTop = true) { params ->
+                                initController(fxmlName = Constants.CONNECT_CONTROLLER_LAYOUT, windowTitle = Constants.Localizable.APP_NAME_KEY.value.localizable, isOnTop = true) { params ->
                                     (params as? DeviceModel)?.apply {
                                         setController(fxmlName = "${Constants.LAYOUT_PATH}main_controller.fxml", params = this)
                                     }

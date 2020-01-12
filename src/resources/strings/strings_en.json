@@ -12,5 +12,7 @@
   "connected_devices_label": "Connected Devices",
   "enter_message_here_label": "Enter text here...",
   "instructions_label": "Instructions",
-  "ok_label": "OK"
+  "ok_label": "OK",
+  "share_text_project_label": "ShareText Project",
+  "project_label": "Project"
 }

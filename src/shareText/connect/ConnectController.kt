@@ -45,7 +45,7 @@ class ConnectController: UIController() {
             initServerSocket()
         } }
         infoIconImageView?.setOnMouseClicked { if (it.isPrimaryButton) {
-            initController(fxmlName = "${Constants.LAYOUT_PATH}basic_dialog_layout.fxml", windowTitle = "", isOnTop = true,
+            initController(fxmlName = Constants.BASIC_DIALOG_LAYOUT, windowTitle = "", isOnTop = true,
                     params = BasicDialogDataModel(headerImage = Constants.IC_INFO_IMAGE, header = Constants.Localizable.INSTRUCTIONS_LABEL.value.localizable,
                             webViewContent = Constants.Localizable.APPLICATION_INFORMATION.value.localizable, mainButtonText = Constants.Localizable.OK_LABEL.value.localizable))
         } }
