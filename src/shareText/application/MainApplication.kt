@@ -28,7 +28,7 @@ class MainApplication: Application() {
 
     @Throws(Exception::class)
     override fun start(primaryStage: Stage) {
-        val fxmlLoader = FXMLLoader(javaClass.getResource("${Constants.LAYOUT_PATH}splash_controller_layout.fxml"))
+        val fxmlLoader = FXMLLoader(javaClass.getResource(Constants.SPLASH_CONTROLLER_LAYOUT))
         val root: Parent = fxmlLoader.load()
         val scaleIn = ScaleTransition(seconds(1.0), root)
         scaleIn.fromX = 0.0

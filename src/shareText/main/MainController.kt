@@ -8,6 +8,7 @@ import java.util.*
 import javafx.scene.control.Label
 import javafx.scene.control.ListView
 import javafx.scene.control.TextField
+import javafx.scene.image.ImageView
 import javafx.scene.input.KeyCode
 import javafx.scene.layout.StackPane
 import javafx.scene.layout.VBox
@@ -30,6 +31,10 @@ class MainController: UIController(), IncomeMessage {
     @FXML private var connectedDevicesListView: ListView<DeviceModel>? = null
     @FXML private var messageTextField: TextField? = null
     @FXML private var sendMessageButton: StackPane? = null
+    @FXML private var toolbar: VBox? = null
+    @FXML private var toolbarCloseButton: ImageView? = null
+    @FXML private var toolbarSaveButton: ImageView? = null
+    @FXML private var toolbarCopyButton: ImageView? = null
     @FXML private var shareTextListView: ListView<MessageModel>? = null
     @FXML private var shareTextEmptyVBox: VBox? = null
     @FXML private var contactUsButton: JFXButton? = null
@@ -56,6 +61,7 @@ class MainController: UIController(), IncomeMessage {
         set(value) {
             field = value
             shareTextEmptyVBox?.isVisible = value == ShareTextViewType.EMPTY_VIEW
+            toolbar?.isVisible = value == ShareTextViewType.MESSAGE_VIEW
         }
 
     override fun onMessageReceived(message: MessageModel?) {
@@ -74,9 +80,10 @@ class MainController: UIController(), IncomeMessage {
         configureUI()
         configureDeviceListView()
         configureContactLayout()
+        configureToolbarActions()
         configureShareTextListView()
         configureMessageFieldLayout()
-        configureViewModel()
+        //configureViewModel()
     }
 
     private fun showConnectDialog() {
@@ -106,11 +113,48 @@ class MainController: UIController(), IncomeMessage {
         contactUsButton?.setOnMouseClicked { if (it.isPrimaryButton) initController(fxmlName = Constants.CONTACT_VIEW_LAYOUT, windowTitle = Constants.Localizable.SHARE_TEXT_PROJECT_LABEL.value.localizable, isOnTop = true) }
     }
 
+    private fun configureToolbarActions() {
+        toolbarCloseButton?.setOnMouseClicked { if (it.isPrimaryButton) {
+            shareTextListView?.selectionModel?.clearSelection()
+            configureToolbarButton(state = false)
+        } }
+        toolbarSaveButton?.setOnMouseClicked { if (it.isPrimaryButton) {
+
+        } }
+        toolbarCopyButton?.setOnMouseClicked { if (it.isPrimaryButton) {
+
+        } }
+    }
+
     private fun configureShareTextListView() {
-        shareTextListView?.setCellFactory { MessageCell() }
+        shareTextListView?.setCellFactory { with(MessageCell()) {
+            wrappingWidth = shareTextListView?.width
+            this
+        } }
         shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {
+            configureToolbarButton()
             shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }
         } }
+        shareTextViewType = ShareTextViewType.MESSAGE_VIEW
+        shareTextListView?.items?.addAll(MessageModel(connectionState = true, type = "text/plain", body = "shareTextListView?.setCellFactory { MessageCell() }" +
+                "        shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {" +
+                "            shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }" +
+                "        } }", isInstantMessage = false), MessageModel(connectionState = true, type = "text/plain", body = "shareTextListView?.setCellFactory { MessageCell() }" +
+                "        shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {" +
+                "            shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }" +
+                "        } }", isInstantMessage = false), MessageModel(connectionState = true, type = "text/plain", body = "shareTextListView?.setCellFactory { MessageCell() }" +
+                "        shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {" +
+                "            shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }" +
+                "        } }", isInstantMessage = false), MessageModel(connectionState = true, type = "text/plain", body = "shareTextListView?.setCellFactory { MessageCell() }" +
+                "        shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {" +
+                "            shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }" +
+                "        } }", isInstantMessage = false), MessageModel(connectionState = true, type = "text/plain", body = "shareTextListView?.setCellFactory { MessageCell() }" +
+                "        shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {" +
+                "            shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }" +
+                "        } }", isInstantMessage = false), MessageModel(connectionState = true, type = "text/plain", body = "shareTextListView?.setCellFactory { MessageCell() }" +
+                "        shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {" +
+                "            shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }" +
+                "        } }", isInstantMessage = false))
     }
 
     private fun configureMessageFieldLayout() {
@@ -136,6 +180,11 @@ class MainController: UIController(), IncomeMessage {
     private fun clearAfterDisconnect() {
         shareTextListView?.items?.clear()
         connectedDevicesListView?.items?.clear()
+    }
+
+    private fun configureToolbarButton(state: Boolean = true) {
+        toolbarCloseButton?.opacity = if (state) 1.0 else 0.5
+        toolbarCloseButton?.isDisable = !state
     }
 
 }

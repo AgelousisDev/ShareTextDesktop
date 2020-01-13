@@ -46,7 +46,7 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 4, 0, 0, 0);
     -fx-text-fill: #FFFFFF;
     -fx-text-align: center;
-    -fx-padding: 16;
+    -fx-padding: 24;
     -fx-background-insets: 8;
 }
 .share-text-list-cell .list-cell:odd {
@@ -57,7 +57,7 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 4, 0, 0, 0);
     -fx-text-fill: #FFFFFF;
     -fx-text-align: center;
-    -fx-padding: 16;
+    -fx-padding: 24;
     -fx-background-insets: 8;
 }
 .share-text-list-cell .list-cell:empty:odd {
@@ -70,6 +70,17 @@
 }
 .share-text-list-cell .list-cell:empty {
     visibility: hidden;
+}
+.share-text-list-cell .list-cell:selected {
+    display: inline-block;
+    -fx-min-width: 50px;
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 40;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 4, 0, 0, 0);
+    -fx-text-fill: #000000;
+    -fx-text-align: center;
+    -fx-padding: 24;
+    -fx-background-insets: 8;
 }
 .topRoundWhiteButton {
     -fx-background-color: #FFFFFF;

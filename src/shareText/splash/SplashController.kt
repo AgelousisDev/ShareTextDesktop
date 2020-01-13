@@ -24,7 +24,7 @@ class SplashController: UIController() {
                             else {
                                 initController(fxmlName = Constants.CONNECT_CONTROLLER_LAYOUT, windowTitle = Constants.Localizable.APP_NAME_KEY.value.localizable, isOnTop = true) { params ->
                                     (params as? DeviceModel)?.apply {
-                                        setController(fxmlName = "${Constants.LAYOUT_PATH}main_controller.fxml", params = this)
+                                        setController(fxmlName = Constants.MAIN_CONTROLLER_LAYOUT, params = this)
                                     }
                                 }
                             }

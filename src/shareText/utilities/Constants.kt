@@ -23,9 +23,11 @@ object Constants {
     const val emailLink = "mailto:vagelis_agelousis@outlook.com?subject=ShareText"
     const val githubLink = "https://github.com/AgelousisDev/ShareTextDesktop"
     const val IC_INFO_IMAGE = "${IMAGES_PATH}ic_info.png"
+    const val SPLASH_CONTROLLER_LAYOUT = "${LAYOUT_PATH}splash_controller_layout.fxml"
     const val CONNECT_CONTROLLER_LAYOUT = "${LAYOUT_PATH}connect_controller_layout.fxml"
     const val BASIC_DIALOG_LAYOUT = "${LAYOUT_PATH}basic_dialog_layout.fxml"
     const val CONTACT_VIEW_LAYOUT = "${LAYOUT_PATH}contact_view_layout.fxml"
+    const val MAIN_CONTROLLER_LAYOUT = "${LAYOUT_PATH}main_controller.fxml"
 
     enum class Localizable(val value: String) {
         APP_NAME_KEY("app_name"),
