@@ -1,6 +1,8 @@
 package shareText.utilities.extensions
 
 import javafx.scene.control.Label
+import javafx.scene.input.Clipboard
+import javafx.scene.input.ClipboardContent
 import javafx.scene.input.MouseButton
 import javafx.scene.input.MouseEvent
 import javafx.scene.paint.Paint
@@ -101,3 +103,10 @@ fun <T> List<T>.secondOrNull(): T? = if (isEmpty()) null else this[1]
 
 val String?.isLink: Boolean
     get() = this?.startsWith("https://") == true || this?.startsWith("http://") == true
+
+fun copyTextToClipboard(text: String) = Clipboard.getSystemClipboard().setContent(with(ClipboardContent()) {
+        putString(text)
+        this
+    })
+
+inline fun <T> Array<out T>.applyToAll(action: (T) -> Unit) { for (element in this) action(element) }

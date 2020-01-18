@@ -20,17 +20,12 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" spacing="8.0">
                            <children>
-                              <ImageView fx:id="toolbarCopyButton" disable="true" fitHeight="35.0" fitWidth="50.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="toolbarCopyButton" disable="true" fitHeight="25.0" fitWidth="50.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/ic_content_copy.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="toolbarSaveButton" disable="true" fitHeight="35.0" fitWidth="50.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/ic_save.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="toolbarCloseButton" disable="true" fitHeight="35.0" fitWidth="50.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="toolbarCloseButton" disable="true" fitHeight="25.0" fitWidth="50.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/ic_close.png" />
                                  </image>

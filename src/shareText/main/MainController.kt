@@ -33,7 +33,6 @@ class MainController: UIController(), IncomeMessage {
     @FXML private var sendMessageButton: StackPane? = null
     @FXML private var toolbar: VBox? = null
     @FXML private var toolbarCloseButton: ImageView? = null
-    @FXML private var toolbarSaveButton: ImageView? = null
     @FXML private var toolbarCopyButton: ImageView? = null
     @FXML private var shareTextListView: ListView<MessageModel>? = null
     @FXML private var shareTextEmptyVBox: VBox? = null
@@ -116,13 +115,11 @@ class MainController: UIController(), IncomeMessage {
     private fun configureToolbarActions() {
         toolbarCloseButton?.setOnMouseClicked { if (it.isPrimaryButton) {
             shareTextListView?.selectionModel?.clearSelection()
-            configureToolbarButton(state = false)
-        } }
-        toolbarSaveButton?.setOnMouseClicked { if (it.isPrimaryButton) {
-
+            configureToolbarButtons(state = false)
         } }
         toolbarCopyButton?.setOnMouseClicked { if (it.isPrimaryButton) {
-
+            copyTextToClipboard(text = shareTextListView?.selectionModel?.selectedItem?.body ?: return@setOnMouseClicked)
+            configureToolbarButtons(state = false)
         } }
     }
 
@@ -132,7 +129,7 @@ class MainController: UIController(), IncomeMessage {
             this
         } }
         shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {
-            configureToolbarButton()
+            configureToolbarButtons()
             shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }
         } }
         shareTextViewType = ShareTextViewType.MESSAGE_VIEW
@@ -182,9 +179,11 @@ class MainController: UIController(), IncomeMessage {
         connectedDevicesListView?.items?.clear()
     }
 
-    private fun configureToolbarButton(state: Boolean = true) {
-        toolbarCloseButton?.opacity = if (state) 1.0 else 0.5
-        toolbarCloseButton?.isDisable = !state
+    private fun configureToolbarButtons(state: Boolean = true) {
+        arrayOf(toolbarCloseButton, toolbarCopyButton).applyToAll {
+            it?.opacity = if (state) 1.0 else 0.5
+            it?.isDisable = !state
+        }
     }
 
 }
