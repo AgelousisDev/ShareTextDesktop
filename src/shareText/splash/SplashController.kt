@@ -5,7 +5,7 @@ import javafx.scene.paint.Color
 import shareText.controller.UIController
 import shareText.network.InternetConnection
 import shareText.notfication.Toast
-import shareText.server_socket.models.DeviceModel
+import shareText.server_socket.models.ClientHost
 import shareText.utilities.Constants
 import shareText.utilities.extensions.localizable
 import java.net.URL
@@ -23,7 +23,7 @@ class SplashController: UIController() {
                                 primaryStage?.let { stage -> Toast.makeText(ownerStage = stage, toastMsg = Constants.Localizable.INTERNET_CONNECTION_NOT_AVAILABLE_LABEL.value.localizable, toastDelay = 2000, fadeInDelay = 250.0, fadeOutDelay = 250.0, textColor = Color.WHITE, typeface = "Ubuntu Mono", size = 18.0) }
                             else {
                                 initController(fxmlName = Constants.CONNECT_CONTROLLER_LAYOUT, windowTitle = Constants.Localizable.APP_NAME_KEY.value.localizable, isOnTop = true) { params ->
-                                    (params as? DeviceModel)?.apply {
+                                    (params as? ClientHost)?.apply {
                                         setController(fxmlName = Constants.MAIN_CONTROLLER_LAYOUT, params = this)
                                     }
                                 }

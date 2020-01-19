@@ -1,10 +1,10 @@
 package shareText.utilities
 
-import shareText.server_socket.models.DeviceModel
+import shareText.server_socket.models.ClientHost
 
 typealias TimerBlock = (Boolean, String) -> Unit
 typealias InternetConnectionBlock = (Boolean) -> Unit
-typealias ConnectServiceBlock = (DeviceModel?) -> Unit
+typealias ConnectServiceBlock = (ClientHost?) -> Unit
 typealias ViewControllerOnTopHideBlock = (Any?) -> Unit
 object Constants {
     const val LAYOUT_PATH = "/resources/layout/"
@@ -45,7 +45,8 @@ object Constants {
         INSTRUCTIONS_LABEL("instructions_label"),
         OK_LABEL("ok_label"),
         SHARE_TEXT_PROJECT_LABEL("share_text_project_label"),
-        PROJECT_LABEL("project_label")
+        PROJECT_LABEL("project_label"),
+        COPIED_TO_CLIPBOARD_LABEL("copied_to_clipboard_label")
     }
 
 }

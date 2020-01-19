@@ -16,25 +16,40 @@
          <children>
             <AnchorPane prefHeight="651.0" prefWidth="671.0" styleClass="messageListViewBackground" stylesheets="@../style/style.css">
                <children>
-                  <VBox fx:id="toolbar" prefHeight="50.0" prefWidth="679.0" visible="false">
+                  <VBox fx:id="toolbar" prefHeight="50.0" prefWidth="679.0">
                      <children>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" spacing="8.0">
+                        <AnchorPane prefWidth="200.0">
                            <children>
-                              <ImageView fx:id="toolbarCopyButton" disable="true" fitHeight="25.0" fitWidth="50.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/ic_content_copy.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="toolbarCloseButton" disable="true" fitHeight="25.0" fitWidth="50.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/ic_close.png" />
-                                 </image>
-                              </ImageView>
+                              <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="579.0" spacing="8.0" AnchorPane.leftAnchor="16.0">
+                                 <children>
+                                    <ImageView fx:id="toolbarCopyButton1" disable="true" fitHeight="25.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/ic_desktop.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="channelLabel" textFill="#868282">
+                                       <font>
+                                          <Font name="Ubuntu Mono Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" layoutX="609.0" prefHeight="50.0" prefWidth="70.0" spacing="8.0" AnchorPane.rightAnchor="12.0">
+                                 <children>
+                                    <ImageView fx:id="toolbarCopyButton" disable="true" fitHeight="25.0" fitWidth="50.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/ic_content_copy.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="toolbarCloseButton" disable="true" fitHeight="25.0" fitWidth="50.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/ic_close.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
                            </children>
-                           <VBox.margin>
-                              <Insets right="8.0" />
-                           </VBox.margin>
-                        </HBox>
+                        </AnchorPane>
                         <Line endX="678.0" stroke="#868282" strokeLineCap="ROUND" />
                      </children>
                   </VBox>

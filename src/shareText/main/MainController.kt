@@ -12,14 +12,16 @@ import javafx.scene.image.ImageView
 import javafx.scene.input.KeyCode
 import javafx.scene.layout.StackPane
 import javafx.scene.layout.VBox
+import javafx.scene.paint.Color
 import javafx.stage.Stage
 import shareText.application.MainApplication
 import shareText.main.cells.DeviceCell
 import shareText.main.cells.MessageCell
 import shareText.main.enumerations.ShareTextViewType
 import shareText.main.view_models.ShareTextViewModel
+import shareText.notfication.Toast
 import shareText.server_socket.interfaces.IncomeMessage
-import shareText.server_socket.models.DeviceModel
+import shareText.server_socket.models.ClientHost
 import shareText.server_socket.models.MessageModel
 import shareText.utilities.Constants
 import shareText.utilities.extensions.*
@@ -28,9 +30,10 @@ import kotlin.system.exitProcess
 class MainController: UIController(), IncomeMessage {
     @FXML private var reConnectAndroidButton: JFXButton? = null
     @FXML private var connectedDevicesLabel: Label? = null
-    @FXML private var connectedDevicesListView: ListView<DeviceModel>? = null
+    @FXML private var connectedDevicesListView: ListView<ClientHost>? = null
     @FXML private var messageTextField: TextField? = null
     @FXML private var sendMessageButton: StackPane? = null
+    @FXML private var channelLabel: Label? = null
     @FXML private var toolbar: VBox? = null
     @FXML private var toolbarCloseButton: ImageView? = null
     @FXML private var toolbarCopyButton: ImageView? = null
@@ -42,8 +45,9 @@ class MainController: UIController(), IncomeMessage {
     override var params: Any? = null
         set(value) {
             field = value
-            (value as? DeviceModel)?.apply {
+            (value as? ClientHost)?.apply {
                 connectedDevicesListView?.items?.add(this)
+                channelLabel?.text = this.channelName
             }
         }
     override var primaryStage: Stage? = null
@@ -82,12 +86,12 @@ class MainController: UIController(), IncomeMessage {
         configureToolbarActions()
         configureShareTextListView()
         configureMessageFieldLayout()
-        //configureViewModel()
+        configureViewModel()
     }
 
     private fun showConnectDialog() {
         initController(fxmlName = Constants.CONNECT_CONTROLLER_LAYOUT, windowTitle = Constants.Localizable.APP_NAME_KEY.value.localizable, isOnTop = true) {
-            (it as? DeviceModel)?.apply {
+            (it as? ClientHost)?.apply {
                 connectedDevicesListView?.items?.add(this)
                 configureViewModel()
             }
@@ -119,7 +123,9 @@ class MainController: UIController(), IncomeMessage {
         } }
         toolbarCopyButton?.setOnMouseClicked { if (it.isPrimaryButton) {
             copyTextToClipboard(text = shareTextListView?.selectionModel?.selectedItem?.body ?: return@setOnMouseClicked)
+            shareTextListView?.selectionModel?.clearSelection()
             configureToolbarButtons(state = false)
+            Toast.makeText(ownerStage = primaryStage ?: return@setOnMouseClicked, toastMsg = Constants.Localizable.COPIED_TO_CLIPBOARD_LABEL.value.localizable, toastDelay = 2000, fadeInDelay = 250.0, fadeOutDelay = 250.0, textColor = Color.WHITE, typeface = "Ubuntu Mono", size = 18.0)
         } }
     }
 
@@ -132,26 +138,6 @@ class MainController: UIController(), IncomeMessage {
             configureToolbarButtons()
             shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }
         } }
-        shareTextViewType = ShareTextViewType.MESSAGE_VIEW
-        shareTextListView?.items?.addAll(MessageModel(connectionState = true, type = "text/plain", body = "shareTextListView?.setCellFactory { MessageCell() }" +
-                "        shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {" +
-                "            shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }" +
-                "        } }", isInstantMessage = false), MessageModel(connectionState = true, type = "text/plain", body = "shareTextListView?.setCellFactory { MessageCell() }" +
-                "        shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {" +
-                "            shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }" +
-                "        } }", isInstantMessage = false), MessageModel(connectionState = true, type = "text/plain", body = "shareTextListView?.setCellFactory { MessageCell() }" +
-                "        shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {" +
-                "            shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }" +
-                "        } }", isInstantMessage = false), MessageModel(connectionState = true, type = "text/plain", body = "shareTextListView?.setCellFactory { MessageCell() }" +
-                "        shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {" +
-                "            shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }" +
-                "        } }", isInstantMessage = false), MessageModel(connectionState = true, type = "text/plain", body = "shareTextListView?.setCellFactory { MessageCell() }" +
-                "        shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {" +
-                "            shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }" +
-                "        } }", isInstantMessage = false), MessageModel(connectionState = true, type = "text/plain", body = "shareTextListView?.setCellFactory { MessageCell() }" +
-                "        shareTextListView?.setOnMouseClicked { if (it.isPrimaryButton) {" +
-                "            shareTextListView?.selectionModel?.selectedItem?.body?.takeIf { body -> body.isLink }?.apply { browseUrlOnLinux(urlString = this) }" +
-                "        } }", isInstantMessage = false))
     }
 
     private fun configureMessageFieldLayout() {

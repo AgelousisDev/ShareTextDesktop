@@ -3,7 +3,7 @@ package shareText.connect.service
 import javafx.concurrent.Service
 import javafx.concurrent.Task
 import shareText.application.MainApplication
-import shareText.server_socket.models.DeviceModel
+import shareText.server_socket.models.ClientHost
 import shareText.server_socket.models.MessageModel
 import shareText.utilities.ConnectServiceBlock
 import shareText.utilities.Constants
@@ -30,7 +30,7 @@ class ConnectService(private val port: Int, private val channelName: String, pri
 
             override fun succeeded() {
                 super.succeeded()
-                connectServiceBlock(DeviceModel(deviceName = this@ConnectService.value?.body))
+                connectServiceBlock(ClientHost(deviceName = this@ConnectService.value?.body))
             }
         }
 

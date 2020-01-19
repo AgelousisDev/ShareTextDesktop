@@ -9,7 +9,6 @@ import javafx.scene.image.ImageView
 import shareText.connect.service.ConnectService
 import shareText.controller.UIController
 import shareText.dialogs.models.BasicDialogDataModel
-import shareText.server_socket.models.DeviceModel
 import shareText.utilities.Constants
 import shareText.utilities.Timer
 import shareText.utilities.extensions.*
@@ -38,14 +37,12 @@ class ConnectController: UIController() {
             searchButton?.isDisable = newValue.isEmpty()
         }
         searchButton?.setOnMouseClicked { if (it.isPrimaryButton) {
-            primaryStage?.hide()
-            viewControllerOnTopHideBlock?.invoke(DeviceModel(deviceName = "Test"))
-            /*Timer.start { state, seconds ->
+            Timer.start { state, seconds ->
                 timerLabel?.executeTimerColors(seconds = seconds.toInt())
                 searchButton?.isDisable = !state
                 if (!state) { timerLabel?.isVisible = true; progressBar?.isVisible = true; timerLabel?.text = seconds } else { timerLabel?.isVisible = false; progressBar?.isVisible = false }
             }
-            initServerSocket()*/
+            initServerSocket()
         } }
         infoIconImageView?.setOnMouseClicked { if (it.isPrimaryButton) {
             initController(fxmlName = Constants.BASIC_DIALOG_LAYOUT, windowTitle = "", isOnTop = true,
@@ -56,6 +53,7 @@ class ConnectController: UIController() {
 
     private fun initServerSocket() {
         ConnectService(port = portField?.text?.split(":")?.secondOrNull()?.trim()?.toInt() ?: 0, channelName = channelNameField?.text ?: "") {
+            it?.channelName = channelNameField?.text
             primaryStage?.hide()
             viewControllerOnTopHideBlock?.invoke(it)
         }.start()
